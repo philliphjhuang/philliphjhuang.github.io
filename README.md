@@ -1,2 +1,2 @@
-# phillip-hj-huang.github.io
+# philliphjhuang.github.io
 Phillip Huang's personal website
