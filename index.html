@@ -1,73 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Phillip Huang</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      background: #fff;
-      color: #111;
-      text-align: center;
-      padding: 20px;
-    }
-    h1 {
-      font-weight: 600;
-      margin-bottom: 0.25em;
-    }
-    p {
-      max-width: 400px;
-      margin-top: 0;
-      margin-bottom: 1.5em;
-      color: #444;
-      font-size: 1.1rem;
-      line-height: 1.5;
-    }
-    .links a {
-      margin: 0 12px;
-      text-decoration: none;
-      color: #0366d6;
-      font-weight: 500;
-      font-size: 1.25rem;
-      transition: color 0.3s ease;
-    }
-    .links a:hover {
-      color: #023e8a;
-    }
-    .email {
-      margin-bottom: 1.5em;
-      font-size: 0.95rem;
-      color: #555;
-    }
-    @media (max-width: 480px) {
-      p {
-        max-width: 90vw;
-      }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phillip Huang</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        h2 {
+            margin-top: 2rem;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 0.5rem;
+        }
+
+        ul {
+            padding-left: 1.2rem;
+        }
+
+        .contact {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .contact a {
+            margin: 0 10px;
+            color: #333;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact a:hover {
+            color: #0077b5;
+            /* LinkedIn blue */
+        }
+    </style>
 </head>
+
 <body>
-  <h1>Phillip Huang</h1>
-  <p>
-    Welcome to my personal website. I’m a passionate professional eager to
-    connect and share my work.
-  </p>
-  <div class="email">
-    <a href="mailto:philliphjhuang@gmail.com">philliphjhuang@gmail.com</a><br />
-    <a href="mailto:huangphi@usc.edu">huangphi@usc.edu</a>
-  </div>
-  <div class="links">
-    <a href="https://www.linkedin.com/in/phillip-hj-huang/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    <a href="https://github.com/philliphjhuang" target="_blank" rel="noopener noreferrer">GitHub</a>
-    <a href="Resume_PhillipHuang.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
-  </div>
+    <img src="files/images/phillip.webp" alt="Portrait of Phillip Huang" />
+    <h1>Phillip Huang</h1>
+
+    <h2>Biography</h2>
+    <p>
+        Phillip Huang is a Master’s student in Computer Science at the University of Southern California with a
+        background in machine learning, large language models, and agentic AI systems. He is passionate about
+        research-driven development, automation, and scalable AI applications.
+    </p>
+
+    <h2>Interests</h2>
+    <p>
+        Large Language Models, AI Agents, Cybersecurity Automation, NLP, and Applied Machine Learning.
+    </p>
+
+    <h2>Education</h2>
+    <ul>
+        <li><strong>University of Southern California</strong>, M.S. in Computer Science (Aug 2024 – May 2026)</li>
+        <li><strong>Rutgers University</strong>, B.S. in Computer Science (Sep 2020 – Jan 2024)</li>
+    </ul>
+
+    <h2>Work Experience</h2>
+    <ul>
+        <li><strong>Pacific Northwest National Laboratory – NSIP Masters Intern</strong> (May 2025 – Aug 2025): Built LLM pipeline for executable
+            cyber-attacks; automated benchmark testing with 73% task success rate.</li>
+        <li><strong>Sorenson Communications – AI Intern</strong> (Jun 2024 – Dec 2024): Boosted ASR post-processing
+            accuracy from 50% to 65% using LLMs.</li>
+        <li><strong>Radical AI – AI Engineer Intern</strong> (Feb 2024 – May 2024): Developed RAG-based chatbot and
+            Gemini-powered quiz tool.</li>
+        <li><strong>Snail Games USA – Software Engineer Intern</strong> (Jun 2023 – Aug 2023): Created 3D game engines
+            in UE5; implemented gameplay and AI systems.</li>
+        <li><strong>OmniVision Technologies – Algorithm Intern</strong> (May 2022 – Aug 2022): Enhanced image processing
+            algorithms and color correction tools.</li>
+    </ul>
+
+    <h2>Research Experience</h2>
+    <ul>
+        <li><strong>USC FORTIS Lab – Graduate Researcher</strong> (Apr 2025 – Present): Simulated political surveys with
+            LLMs; studied question bias and model-human consistency.</li>
+        <li><strong>Rutgers Art & AI Lab – Undergraduate Researcher</strong> (Jan 2023 – May 2023): Trained deep
+            learning models (CNN/RNN) for image and language tasks.</li>
+    </ul>
+
+
+    <h2>Contact</h2>
+    <div class="contact">
+        <a href="mailto:philliphjhuang@gmail.com" title="Email">
+            <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://github.com/philliphjhuang" target="_blank" title="GitHub">
+            <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/phillip-hj-huang/" target="_blank" title="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="files/Resume_PhillipHuang.pdf" target="_blank" title="Resume">
+            <i class="fas fa-file-pdf"></i>
+        </a>
+    </div>
 </body>
+
 </html>
