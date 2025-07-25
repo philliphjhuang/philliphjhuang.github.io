@@ -2,126 +2,368 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Phillip Huang</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            line-height: 1.6;
-            background-color: #f9f9f9;
-            color: #333;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phillip Huang</title>
+  <link rel="preload" href="files/images/phillip.webp" as="image" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* Base Reset */
+    * {
+      box-sizing: border-box;
+    }
 
-        img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            display: block;
-            margin: 0 auto;
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
-        h1,
-        h2 {
-            text-align: center;
-            color: #2c3e50;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.6;
+      background-color: #121212;
+      color: #eee;
+      transition: background-color 0.3s, color 0.3s;
+    }
 
-        h2 {
-            margin-top: 2rem;
-            border-bottom: 2px solid #ccc;
-            padding-bottom: 0.5rem;
-        }
+    /* Light mode overrides */
+    body.light-mode {
+      background-color: #f9f9f9;
+      color: #333;
+    }
 
-        ul {
-            padding-left: 1.2rem;
-        }
+    .header-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    }
 
-        .contact {
-            text-align: center;
-            margin-top: 2rem;
-        }
+    .left-column {
+      flex: 0 0 250px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1rem;
+    }
 
-        .contact a {
-            margin: 0 10px;
-            color: #333;
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
+    .left-column img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #eee;
+      transition: border-color 0.3s;
+    }
 
-        .contact a:hover {
-            color: #0077b5;
-            /* LinkedIn blue */
-        }
-    </style>
+    body.light-mode .left-column img {
+      border-color: #333;
+    }
+
+    .left-column h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: inherit;
+    }
+
+    .top-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .top-links a {
+      color: inherit;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      padding: 6px;
+      margin: 2px;
+    }
+
+    .top-links a:hover {
+      color: #0a84ff;
+    }
+
+    .resume-button {
+      background-color: #0a84ff;
+      color: white !important;
+      font-weight: 600;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      text-decoration: none;
+      padding: 4px 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .resume-button:hover {
+      background-color: #005fcc;
+      transform: scale(1.05);
+    }
+
+    body.light-mode .resume-button {
+      background-color: #0077b5;
+      color: white !important;
+    }
+
+    body.light-mode .resume-button:hover {
+      background-color: #005b87;
+    }
+
+    .right-column {
+      flex: 1 1 0;
+    }
+
+    .right-column h2 {
+      margin-top: 0;
+      color: inherit;
+    }
+
+    .bio-subgrid {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .bio-subcolumn {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .bio-subcolumn h3 {
+      margin-top: 0;
+      color: inherit;
+    }
+
+    h2 {
+      margin-top: 3rem;
+      border-bottom: 2px solid #555;
+      padding-bottom: 0.5rem;
+      color: inherit;
+    }
+
+    body.light-mode h2 {
+      border-color: #ccc;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+    }
+
+    .contact {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 1.1rem;
+    }
+
+    .contact a {
+      color: inherit;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact a:hover {
+      color: #0a84ff;
+    }
+
+    /* Dark mode toggle button */
+    #darkModeToggle {
+      position: fixed;
+      top: 15px;
+      right: 15px;
+      background: transparent;
+      border: 2px solid currentColor;
+      color: inherit;
+      padding: 6px 10px;
+      font-size: 0.9rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      z-index: 9999;
+      user-select: none;
+    }
+
+    #darkModeToggle:hover {
+      background-color: currentColor;
+      color: #121212;
+    }
+
+    body.light-mode #darkModeToggle:hover {
+      background-color: currentColor;
+      color: #f9f9f9;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .header-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .left-column {
+        align-items: center;
+      }
+
+      .right-column {
+        text-align: center;
+      }
+
+      .bio-subgrid {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* Scroll fade-in animation */
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      will-change: opacity, transform;
+    }
+
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
 </head>
 
 <body>
-    <img src="files/images/phillip.webp" alt="Portrait of Phillip Huang" />
-    <h1>Phillip Huang</h1>
+  <button id="darkModeToggle" aria-label="Toggle dark/light mode">Light Mode</button>
 
-    <h2>Biography</h2>
-    <p>
+  <div class="header-container fade-in-section">
+    <div class="left-column">
+      <img src="files/images/phillip.webp" alt="Portrait of Phillip Huang" />
+      <h1>Phillip Huang</h1>
+      <div class="top-links" role="navigation" aria-label="Contact and links">
+        <a href="https://github.com/philliphjhuang" target="_blank" rel="noopener noreferrer" title="GitHub"
+          aria-label="GitHub">
+          <i class="fab fa-github" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/phillip-hj-huang/" target="_blank" rel="noopener noreferrer" title="LinkedIn"
+          aria-label="LinkedIn">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+        <a href="#contact" title="Email" aria-label="Email">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <!-- Separated Resume Button -->
+      <a href="files/Resume_PhillipHuang.pdf" target="_blank" rel="noopener noreferrer" class="resume-button"
+        title="View Resume">
+        Resumé
+      </a>
+    </div>
+
+    <section class="right-column fade-in-section">
+      <h2>Biography</h2>
+      <p>
         Phillip Huang is a Master’s student in Computer Science at the University of Southern California with a
         background in machine learning, large language models, and agentic AI systems. He is passionate about
         research-driven development, automation, and scalable AI applications.
-    </p>
+      </p>
+      <div class="bio-subgrid">
+        <div class="bio-subcolumn">
+          <h3>Interests</h3>
+          <p>
+            Large Language Models, AI Agents, Cybersecurity Automation, NLP, and Applied Machine Learning.
+          </p>
+        </div>
+        <div class="bio-subcolumn">
+          <h3>Education</h3>
+          <ul>
+            <li><strong>USC</strong>, M.S. in Computer Science (2024–2026)</li>
+            <li><strong>Rutgers</strong>, B.S. in Computer Science (2020–2024)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
 
-    <h2>Interests</h2>
-    <p>
-        Large Language Models, AI Agents, Cybersecurity Automation, NLP, and Applied Machine Learning.
-    </p>
-
-    <h2>Education</h2>
-    <ul>
-        <li><strong>University of Southern California</strong>, M.S. in Computer Science (Aug 2024 – May 2026)</li>
-        <li><strong>Rutgers University</strong>, B.S. in Computer Science (Sep 2020 – Jan 2024)</li>
-    </ul>
-
+  <section class="fade-in-section">
     <h2>Work Experience</h2>
     <ul>
-        <li><strong>Pacific Northwest National Laboratory – NSIP Masters Intern</strong> (May 2025 – Aug 2025): Built LLM pipeline for executable
-            cyber-attacks; automated benchmark testing with 73% task success rate.</li>
-        <li><strong>Sorenson Communications – AI Intern</strong> (Jun 2024 – Dec 2024): Boosted ASR post-processing
-            accuracy from 50% to 65% using LLMs.</li>
-        <li><strong>Radical AI – AI Engineer Intern</strong> (Feb 2024 – May 2024): Developed RAG-based chatbot and
-            Gemini-powered quiz tool.</li>
-        <li><strong>Snail Games USA – Software Engineer Intern</strong> (Jun 2023 – Aug 2023): Created 3D game engines
-            in UE5; implemented gameplay and AI systems.</li>
-        <li><strong>OmniVision Technologies – Algorithm Intern</strong> (May 2022 – Aug 2022): Enhanced image processing
-            algorithms and color correction tools.</li>
+      <li><strong>Pacific Northwest National Laboratory – NSIP Masters Intern</strong> (May 2025 – Aug 2025): Built
+        LLM pipeline for executable cyber-attacks; automated benchmark testing with 73% task success rate.</li>
+      <li><strong>Sorenson Communications – AI Intern</strong> (Jun 2024 – Dec 2024): Boosted ASR post-processing
+        accuracy from 50% to 65% using LLMs.</li>
+      <li><strong>Radical AI – AI Engineer Intern</strong> (Feb 2024 – May 2024): Developed RAG-based chatbot and
+        Gemini-powered quiz tool.</li>
+      <li><strong>Snail Games USA – Software Engineer Intern</strong> (Jun 2023 – Aug 2023): Created 3D game engines in
+        UE5; implemented gameplay and AI systems.</li>
+      <li><strong>OmniVision Technologies – Algorithm Intern</strong> (May 2022 – Aug 2022): Enhanced image
+        processing algorithms and color correction tools.</li>
     </ul>
+  </section>
 
+  <section class="fade-in-section">
     <h2>Research Experience</h2>
     <ul>
-        <li><strong>USC FORTIS Lab – Graduate Researcher</strong> (Apr 2025 – Present): Simulated political surveys with
-            LLMs; studied question bias and model-human consistency.</li>
-        <li><strong>Rutgers Art & AI Lab – Undergraduate Researcher</strong> (Jan 2023 – May 2023): Trained deep
-            learning models (CNN/RNN) for image and language tasks.</li>
+      <li><strong>USC FORTIS Lab – Graduate Researcher</strong> (Apr 2025 – Present): Simulated political surveys with
+        LLMs; studied question bias and model-human consistency.</li>
+      <li><strong>Rutgers Art & AI Lab – Undergraduate Researcher</strong> (Jan 2023 – May 2023): Trained deep learning
+        models (CNN/RNN) for image and language tasks.</li>
     </ul>
+  </section>
 
-
+  <section id="contact" class="fade-in-section">
     <h2>Contact</h2>
     <div class="contact">
-        <a href="mailto:philliphjhuang@gmail.com" title="Email">
-            <i class="fas fa-envelope"></i>
-        </a>
-        <a href="https://github.com/philliphjhuang" target="_blank" title="GitHub">
-            <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/phillip-hj-huang/" target="_blank" title="LinkedIn">
-            <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="files/Resume_PhillipHuang.pdf" target="_blank" title="Resume">
-            <i class="fas fa-file-pdf"></i>
-        </a>
+      Email: <a href="mailto:philliphjhuang@gmail.com">philliphjhuang@gmail.com</a>
     </div>
+  </section>
+
+  <script>
+    // Dark mode toggle
+    const toggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    function updateToggleText() {
+      toggle.textContent = body.classList.contains('light-mode') ? 'Dark Mode' : 'Light Mode';
+    }
+
+    toggle.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      updateToggleText();
+    });
+
+    updateToggleText();
+
+    // Scroll fade-in animation
+    const faders = document.querySelectorAll('.fade-in-section');
+
+    const appearOptions = {
+      threshold: 0.2,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function (entries, appearOnScroll) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        appearOnScroll.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  </script>
 </body>
 
 </html>
