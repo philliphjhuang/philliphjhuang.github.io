@@ -8,7 +8,7 @@
   <link rel="preload" href="files/images/phillip.webp" as="image" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
-    /* Base Reset */
+    /* Base reset */
     * {
       box-sizing: border-box;
     }
@@ -28,10 +28,54 @@
       transition: background-color 0.3s, color 0.3s;
     }
 
-    /* Light mode overrides */
     body.light-mode {
       background-color: #f9f9f9;
       color: #333;
+    }
+
+    /* Top navigation fixed at very top */
+    .top-nav {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      background-color: #1e1e1e;
+      padding: 1rem 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      max-width: 1000px;
+      margin: 0 auto;
+      z-index: 1100;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    body.light-mode .top-nav {
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .top-nav a {
+      text-decoration: none;
+      color: inherit;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .top-nav a:hover,
+    .top-nav a:focus {
+      color: #0a84ff;
+      border-color: #0a84ff;
+      outline: none;
+    }
+
+    /* Add vertical spacing below the nav */
+    .nav-spacer {
+      height: 56px;
+      /* matches nav height + padding */
     }
 
     .header-container {
@@ -85,11 +129,28 @@
       display: flex;
       align-items: center;
       padding: 6px;
-      margin: 2px;
+      /* Animated icon bounce on hover */
+      will-change: transform;
     }
 
-    .top-links a:hover {
+    /* Bounce animation keyframes */
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    .top-links a:hover,
+    .top-links a:focus {
       color: #0a84ff;
+      animation: bounce 0.4s ease-in-out;
+      outline: none;
     }
 
     .resume-button {
@@ -99,16 +160,22 @@
       border-radius: 4px;
       font-size: 0.8rem;
       text-decoration: none;
-      padding: 4px 10px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: background-color 0.3s ease, transform 0.2s ease;
+      padding: 6px 16px;
+      margin-top: 0.5rem;
+      display: inline-block;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+      user-select: none;
+      /* Animate on hover */
+      will-change: transform, box-shadow;
     }
 
-    .resume-button:hover {
+    .resume-button:hover,
+    .resume-button:focus {
       background-color: #005fcc;
-      transform: scale(1.05);
+      transform: scale(1.1);
+      box-shadow: 0 4px 8px rgba(10, 132, 255, 0.6);
+      outline: none;
     }
 
     body.light-mode .resume-button {
@@ -116,7 +183,8 @@
       color: white !important;
     }
 
-    body.light-mode .resume-button:hover {
+    body.light-mode .resume-button:hover,
+    body.light-mode .resume-button:focus {
       background-color: #005b87;
     }
 
@@ -151,7 +219,6 @@
       margin-top: 3rem;
       border-bottom: 2px solid #555;
       padding-bottom: 0.5rem;
-      color: inherit;
     }
 
     body.light-mode h2 {
@@ -175,11 +242,20 @@
       transition: color 0.3s ease;
     }
 
-    .contact a:hover {
+    .contact a:hover,
+    .contact a:focus {
       color: #0a84ff;
+      outline: none;
     }
 
-    /* Dark mode toggle button */
+    .school {
+      opacity: 0.7;
+    }
+
+    .education-list li {
+      margin-bottom: 0.7rem;
+    }
+
     #darkModeToggle {
       position: fixed;
       top: 15px;
@@ -192,28 +268,55 @@
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s, color 0.3s;
-      z-index: 9999;
+      z-index: 1200;
       user-select: none;
     }
 
-    #darkModeToggle:hover {
+    #darkModeToggle:hover,
+    #darkModeToggle:focus {
       background-color: currentColor;
       color: #121212;
+      outline: none;
     }
 
-    body.light-mode #darkModeToggle:hover {
+    body.light-mode #darkModeToggle:hover,
+    body.light-mode #darkModeToggle:focus {
       background-color: currentColor;
       color: #f9f9f9;
     }
 
-    /* Responsive */
+    /* Logo images next to text */
+    .company-logo,
+    .school-logo {
+      vertical-align: middle;
+      height: 28px;
+      width: auto;
+      margin-left: 8px;
+      display: inline-block;
+      filter: brightness(0) invert(1);
+      /* White logos on dark background */
+      transition: filter 0.3s ease;
+    }
+
+    /* Light mode logos: show normal colors */
+    body.light-mode .company-logo,
+    body.light-mode .school-logo {
+      filter: none;
+    }
+
+    /* Responsive scaling for small screens */
+    @media (max-width: 700px) {
+
+      .company-logo,
+      .school-logo {
+        height: 22px;
+        margin-left: 6px;
+      }
+    }
+
     @media (max-width: 700px) {
       .header-container {
         flex-direction: column;
-        align-items: center;
-      }
-
-      .left-column {
         align-items: center;
       }
 
@@ -225,52 +328,104 @@
         flex-direction: column;
         align-items: center;
       }
+
+      .top-nav {
+        gap: 1.5rem;
+        font-size: 0.9rem;
+      }
     }
 
-    /* Scroll fade-in animation */
     .fade-in-section {
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-      will-change: opacity, transform;
     }
 
     .fade-in-section.is-visible {
       opacity: 1;
       transform: none;
     }
+
+    /* Print-friendly mode */
+    @media print {
+      body {
+        background: white !important;
+        color: black !important;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+        font-size: 12pt;
+      }
+
+      /* Hide nav, toggle, animations */
+      .top-nav,
+      #darkModeToggle,
+      .resume-button,
+      .fade-in-section {
+        display: none !important;
+      }
+
+      /* Remove box shadows and borders */
+      .header-container,
+      .left-column img {
+        border: none !important;
+        box-shadow: none !important;
+      }
+
+      .left-column img {
+        width: 130px;
+        height: 130px;
+      }
+
+      h2 {
+        border: none !important;
+        margin-top: 1.5rem !important;
+      }
+
+      a {
+        color: black !important;
+        text-decoration: underline;
+        cursor: text;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <button id="darkModeToggle" aria-label="Toggle dark/light mode">Light Mode</button>
+  <!-- Fixed top nav -->
+  <nav class="top-nav" role="navigation" aria-label="Main navigation">
+    <a href="#biography">Biography</a>
+    <a href="#work">Work Experience</a>
+    <a href="#research">Research</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <!-- Spacer so content doesn't hide behind fixed nav -->
+  <div class="nav-spacer"></div>
+
+  <!-- Dark mode toggle button -->
+  <button id="darkModeToggle" aria-label="Toggle dark or light mode" aria-pressed="false">Light Mode</button>
 
   <div class="header-container fade-in-section">
     <div class="left-column">
       <img src="files/images/phillip.webp" alt="Portrait of Phillip Huang" />
       <h1>Phillip Huang</h1>
-      <div class="top-links" role="navigation" aria-label="Contact and links">
+      <div class="top-links" role="navigation" aria-label="Contact and social links">
         <a href="https://github.com/philliphjhuang" target="_blank" rel="noopener noreferrer" title="GitHub"
           aria-label="GitHub">
           <i class="fab fa-github" aria-hidden="true"></i>
         </a>
-        <a href="https://www.linkedin.com/in/phillip-hj-huang/" target="_blank" rel="noopener noreferrer" title="LinkedIn"
-          aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/in/phillip-hj-huang/" target="_blank" rel="noopener noreferrer"
+          title="LinkedIn" aria-label="LinkedIn">
           <i class="fab fa-linkedin" aria-hidden="true"></i>
         </a>
         <a href="#contact" title="Email" aria-label="Email">
           <i class="fas fa-envelope" aria-hidden="true"></i>
         </a>
       </div>
-
-      <!-- Separated Resume Button -->
-      <a href="files/Resume_PhillipHuang.pdf" target="_blank" rel="noopener noreferrer" class="resume-button"
-        title="View Resume">
-        Resumé
-      </a>
+      <a href="files/Resume_PhillipHuang.pdf" target="_blank" class="resume-button" title="View Resume">Resumé</a>
     </div>
 
-    <section class="right-column fade-in-section">
+    <section id="biography" class="right-column fade-in-section">
       <h2>Biography</h2>
       <p>
         Phillip Huang is a Master’s student in Computer Science at the University of Southern California with a
@@ -280,38 +435,69 @@
       <div class="bio-subgrid">
         <div class="bio-subcolumn">
           <h3>Interests</h3>
-          <p>
-            Large Language Models, AI Agents, Cybersecurity Automation, NLP, and Applied Machine Learning.
-          </p>
+          <ul>
+            <li>AI Agents</li>
+            <li>Large Language Models</li>
+            <li>Applied Machine Learning</li>
+            <li>Natural Language Processing</li>
+          </ul>
         </div>
         <div class="bio-subcolumn">
           <h3>Education</h3>
-          <ul>
-            <li><strong>USC</strong>, M.S. in Computer Science (2024–2026)</li>
-            <li><strong>Rutgers</strong>, B.S. in Computer Science (2020–2024)</li>
+          <ul class="education-list">
+            <li>
+              <strong>M.S. in Computer Science 2026</strong>
+              <span class="school">
+                University of Southern California
+                <img src="files/images/USC_logo.webp" alt="USC logo" class="school-logo" />
+              </span>
+            </li>
+            <li>
+              <strong>B.S. in Computer Science 2024</strong>
+              <span class="school">
+                Rutgers University
+                <img src="files/images/rutgers_logo.webp" alt="Rutgers University logo" class="school-logo" />
+              </span>
+            </li>
           </ul>
         </div>
       </div>
     </section>
   </div>
 
-  <section class="fade-in-section">
+  <section id="work" class="fade-in-section">
     <h2>Work Experience</h2>
     <ul>
-      <li><strong>Pacific Northwest National Laboratory – NSIP Masters Intern</strong> (May 2025 – Aug 2025): Built
-        LLM pipeline for executable cyber-attacks; automated benchmark testing with 73% task success rate.</li>
-      <li><strong>Sorenson Communications – AI Intern</strong> (Jun 2024 – Dec 2024): Boosted ASR post-processing
-        accuracy from 50% to 65% using LLMs.</li>
-      <li><strong>Radical AI – AI Engineer Intern</strong> (Feb 2024 – May 2024): Developed RAG-based chatbot and
-        Gemini-powered quiz tool.</li>
-      <li><strong>Snail Games USA – Software Engineer Intern</strong> (Jun 2023 – Aug 2023): Created 3D game engines in
-        UE5; implemented gameplay and AI systems.</li>
-      <li><strong>OmniVision Technologies – Algorithm Intern</strong> (May 2022 – Aug 2022): Enhanced image
-        processing algorithms and color correction tools.</li>
+      <li>
+        <strong>Pacific Northwest National Laboratory – NSIP Masters Intern</strong>
+        <img src="files/images/PNNL_logo.png" alt="PNNL logo" class="company-logo" />
+        (May 2025 – Aug 2025): Built LLM pipeline for executable cyber-attacks; automated benchmark testing with 73%
+        task success rate.
+      </li>
+      <li>
+        <strong>Sorenson Communications – AI Intern</strong>
+        <img src="files/images/Sorenson_logo.webp" alt="Sorenson Communications logo" class="company-logo" />
+        (Jun 2024 – Dec 2024): Boosted ASR post-processing accuracy from 50% to 65% using LLMs.
+      </li>
+      <li>
+        <strong>Radical AI – AI Engineer Intern</strong>
+        <img src="files/images/reality_ai_logo.webp" alt="Radical AI logo" class="company-logo" />
+        (Feb 2024 – May 2024): Developed RAG-based chatbot and Gemini-powered quiz tool.
+      </li>
+      <li>
+        <strong>Snail Games USA – Software Engineer Intern</strong>
+        <img src="files/images/snail_games_usa_logo.webp" alt="Snail Games USA logo" class="company-logo" />
+        (Jun 2023 – Aug 2023): Created 3D game engines in UE5; implemented gameplay and AI systems.
+      </li>
+      <li>
+        <strong>OmniVision Technologies – Algorithm Intern</strong>
+        <img src="files/images/omnivision_logo.webp" alt="OmniVision Technologies logo" class="company-logo" />
+        (May 2022 – Aug 2022): Enhanced image processing algorithms and color correction tools.
+      </li>
     </ul>
   </section>
 
-  <section class="fade-in-section">
+  <section id="research" class="fade-in-section">
     <h2>Research Experience</h2>
     <ul>
       <li><strong>USC FORTIS Lab – Graduate Researcher</strong> (Apr 2025 – Present): Simulated political surveys with
@@ -329,12 +515,14 @@
   </section>
 
   <script>
-    // Dark mode toggle
+    // Dark mode toggle with aria-pressed
     const toggle = document.getElementById('darkModeToggle');
     const body = document.body;
 
     function updateToggleText() {
-      toggle.textContent = body.classList.contains('light-mode') ? 'Dark Mode' : 'Light Mode';
+      const isLight = body.classList.contains('light-mode');
+      toggle.textContent = isLight ? 'Dark Mode' : 'Light Mode';
+      toggle.setAttribute('aria-pressed', isLight);
     }
 
     toggle.addEventListener('click', () => {
@@ -346,23 +534,20 @@
 
     // Scroll fade-in animation
     const faders = document.querySelectorAll('.fade-in-section');
-
     const appearOptions = {
       threshold: 0.2,
       rootMargin: "0px 0px -50px 0px"
     };
 
-    const appearOnScroll = new IntersectionObserver(function (entries, appearOnScroll) {
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         entry.target.classList.add('is-visible');
-        appearOnScroll.unobserve(entry.target);
+        observer.unobserve(entry.target);
       });
     }, appearOptions);
 
-    faders.forEach(fader => {
-      appearOnScroll.observe(fader);
-    });
+    faders.forEach(fader => appearOnScroll.observe(fader));
   </script>
 </body>
 
