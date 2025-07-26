@@ -289,13 +289,20 @@
     .company-logo,
     .school-logo {
       vertical-align: middle;
-      height: 28px;
+      height: 50px;
       width: auto;
       margin-left: 8px;
       display: inline-block;
-      filter: brightness(0) invert(1);
-      /* White logos on dark background */
+      filter: none;
       transition: filter 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    /* Smaller fixed width for USC and Rutgers logos */
+    .school-logo.usc,
+    .school-logo.rutgers {
+      width: 40px;
+      height: auto;
     }
 
     /* Light mode logos: show normal colors */
@@ -309,9 +316,22 @@
 
       .company-logo,
       .school-logo {
-        height: 22px;
+        height: 36px;
         margin-left: 6px;
       }
+
+      .school-logo.usc,
+      .school-logo.rutgers {
+        width: 30px;
+        height: auto;
+      }
+    }
+
+    /* Work experience flex item */
+    .work-item .company-logo {
+      height: 60px;
+      width: auto;
+      flex-shrink: 0;
     }
 
     @media (max-width: 700px) {
@@ -388,6 +408,180 @@
         cursor: text;
       }
     }
+
+    /* Common flex container for logo + text */
+    .flex-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+    }
+
+    /* Work experience flex item */
+    .work-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 1.25rem;
+    }
+
+    .work-item .company-logo {
+      height: 60px;
+      width: auto;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 700px) {
+
+      .flex-item,
+      .work-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .company-logo,
+      .school-logo {
+        height: 32px;
+        margin-left: 6px;
+      }
+
+      .school-logo.usc,
+      .school-logo.rutgers {
+        width: 30px;
+        height: auto;
+      }
+    }
+
+    .school-logo.usc,
+    .school-logo.rutgers {
+      width: 40px;
+      height: auto;
+    }
+
+    .work-experience {
+      position: relative;
+      padding-left: 40px;
+      margin-top: 2rem;
+    }
+
+    /* Container and layout */
+    .timeline {
+      position: relative;
+      margin-left: 30px;
+      padding-left: 30px;
+    }
+
+    /* Vertical line */
+    .timeline-line {
+      position: absolute;
+      top: 35px;
+      bottom: 55px;
+      left: 10px;
+      width: 2px;
+      background-color: rgb(0, 102, 255);
+      z-index: 0;
+    }
+
+    /* Timeline items */
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    /* Dots */
+    .timeline-dot {
+      position: absolute;
+      left: -29px;
+      top: 35px;
+      width: 20px;
+      height: 20px;
+      background-color: rgb(0, 102, 255);
+      border: 2px solid #000000;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .timeline-dot.filled {
+      background-color: #444;
+    }
+
+    /* Content box */
+    .timeline-content {
+      margin-left: 40px;
+    }
+
+    /* Logo and layout */
+    .company-logo {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      margin-right: 10px;
+    }
+
+    .job-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    body.light-mode .timeline-item {
+      background-color: #e7f0ff;
+      color: #222;
+      box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
+    }
+
+    .company-logo {
+      width: 60px;
+      height: auto;
+      flex-shrink: 0;
+      filter: none;
+      transition: filter 0.3s ease;
+    }
+
+    body.light-mode .company-logo {
+      filter: none;
+    }
+
+    .job-header strong {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .job-header a {
+      display: block;
+      color: #0a84ff;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 0.95rem;
+      margin-top: 2px;
+      transition: color 0.3s ease;
+    }
+
+    .job-header a:hover,
+    .job-header a:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+
+    .timeline-content ul {
+      margin-top: 0.5rem;
+      padding-left: 1.2rem;
+      list-style-type: disc;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .company-logo {
+        width: 50px;
+      }
+    }
   </style>
 </head>
 
@@ -445,19 +639,13 @@
         <div class="bio-subcolumn">
           <h3>Education</h3>
           <ul class="education-list">
-            <li>
-              <strong>M.S. in Computer Science 2026</strong>
-              <span class="school">
-                University of Southern California
-                <img src="files/images/USC_logo.webp" alt="USC logo" class="school-logo" />
-              </span>
+            <li class="flex-item">
+              <img src="files/images/USC_logo.webp" alt="USC logo" class="school-logo usc" />
+              <span><strong>M.S. in Computer Science 2026</strong> University of Southern California</span>
             </li>
-            <li>
-              <strong>B.S. in Computer Science 2024</strong>
-              <span class="school">
-                Rutgers University
-                <img src="files/images/rutgers_logo.webp" alt="Rutgers University logo" class="school-logo" />
-              </span>
+            <li class="flex-item">
+              <img src="files/images/rutgers_logo.webp" alt="Rutgers University logo" class="school-logo rutgers" />
+              <span><strong>B.S. in Computer Science 2024</strong> Rutgers University</span>
             </li>
           </ul>
         </div>
@@ -465,45 +653,116 @@
     </section>
   </div>
 
-  <section id="work" class="fade-in-section">
+  <section id="work" class="fade-in-section work-experience">
     <h2>Work Experience</h2>
-    <ul>
-      <li>
-        <strong>Pacific Northwest National Laboratory – NSIP Masters Intern</strong>
-        <img src="files/images/PNNL_logo.png" alt="PNNL logo" class="company-logo" />
-        (May 2025 – Aug 2025): Built LLM pipeline for executable cyber-attacks; automated benchmark testing with 73%
-        task success rate.
-      </li>
-      <li>
-        <strong>Sorenson Communications – AI Intern</strong>
-        <img src="files/images/Sorenson_logo.webp" alt="Sorenson Communications logo" class="company-logo" />
-        (Jun 2024 – Dec 2024): Boosted ASR post-processing accuracy from 50% to 65% using LLMs.
-      </li>
-      <li>
-        <strong>Radical AI – AI Engineer Intern</strong>
-        <img src="files/images/reality_ai_logo.webp" alt="Radical AI logo" class="company-logo" />
-        (Feb 2024 – May 2024): Developed RAG-based chatbot and Gemini-powered quiz tool.
-      </li>
-      <li>
-        <strong>Snail Games USA – Software Engineer Intern</strong>
-        <img src="files/images/snail_games_usa_logo.webp" alt="Snail Games USA logo" class="company-logo" />
-        (Jun 2023 – Aug 2023): Created 3D game engines in UE5; implemented gameplay and AI systems.
-      </li>
-      <li>
-        <strong>OmniVision Technologies – Algorithm Intern</strong>
-        <img src="files/images/omnivision_logo.webp" alt="OmniVision Technologies logo" class="company-logo" />
-        (May 2022 – Aug 2022): Enhanced image processing algorithms and color correction tools.
-      </li>
-    </ul>
+
+    <div class="timeline">
+      <div class="timeline-line"></div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot filled"></div>
+        <div class="timeline-content">
+          <div class="job-header">
+            <img src="files/images/PNNL_logo.png" alt="PNNL logo" class="company-logo" />
+            <div>
+              <strong>NSIP Masters Intern</strong><br />
+              <a href="https://www.pnnl.gov/" target="_blank" rel="noopener noreferrer">Pacific Northwest National
+                Laboratory</a>
+               ·  May 2025 – Aug 2025  ·  Richland, WA
+            </div>
+          </div>
+          <ul>
+            <li>Built LLM pipeline for executable cyber-attacks; automated benchmark testing with 73% task success rate.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="job-header">
+            <img src="files/images/Sorenson_logo.webp" alt="Sorenson Communications logo" class="company-logo" />
+            <div>
+              <strong>AI Intern</strong><br />
+              <a href="https://www.sorenson.com/" target="_blank" rel="noopener noreferrer">Sorenson Communications</a>
+               ·  Jun 2024 – Dec 2024  ·  Remote
+            </div>
+          </div>
+          <ul>
+            <li>Boosted ASR post-processing accuracy from 50% to 65% using LLMs.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="job-header">
+            <img src="files/images/reality_ai_logo.webp" alt="Reality AI logo" class="company-logo" />
+            <div>
+              <strong>AI Engineer Intern</strong><br />
+              <a href="https://www.linkedin.com/company/reality-ai-lab/" target="_blank"
+                rel="noopener noreferrer">Reality AI Lab</a>
+               ·  Feb 2024 – May 2024  ·  Remote
+            </div>
+          </div>
+          <ul>
+            <li>Developed RAG-based chatbot and Gemini-powered quiz tool.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="job-header">
+            <img src="files/images/snail_games_usa_logo.webp" alt="Snail Games USA logo" class="company-logo" />
+            <div>
+              <strong>Game Design Intern</strong><br />
+              <a href="https://snail.com/" target="_blank" rel="noopener noreferrer">Snail Games USA</a>
+               ·  Jun 2023 – Aug 2023  ·  Remote
+            </div>
+          </div>
+          <ul>
+            <li>Created 3D game engines in UE5; implemented gameplay and AI systems.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <div class="job-header">
+            <img src="files/images/omnivision_logo.webp" alt="OmniVision Technologies logo" class="company-logo" />
+            <div>
+              <strong>Algorithm Intern</strong><br />
+              <a href="https://www.sorenson.com/" target="_blank" rel="noopener noreferrer">OmniVision Technologies</a>
+               ·  May 2022 – Aug 2022  ·  Santa Clara, CA
+            </div>
+          </div>
+          <ul>
+            <li>Enhanced image processing algorithms and color correction tools.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
+
 
   <section id="research" class="fade-in-section">
     <h2>Research Experience</h2>
-    <ul>
-      <li><strong>USC FORTIS Lab – Graduate Researcher</strong> (Apr 2025 – Present): Simulated political surveys with
-        LLMs; studied question bias and model-human consistency.</li>
-      <li><strong>Rutgers Art & AI Lab – Undergraduate Researcher</strong> (Jan 2023 – May 2023): Trained deep learning
-        models (CNN/RNN) for image and language tasks.</li>
+    <ul class="research-list">
+      <li class="flex-item">
+        <img src="files/images/USC_logo.webp" alt="USC logo" class="company-logo usc" />
+        <span><strong>USC FORTIS Lab – Graduate Researcher</strong> (Apr 2025 – Present): Simulated political surveys
+          with LLMs; studied question bias and model-human consistency.</span>
+      </li>
+      <li class="flex-item">
+        <img src="files/images/rutgers_logo.webp" alt="Rutgers University logo" class="company-logo rutgers" />
+        <span><strong>Rutgers Art & AI Lab – Undergraduate Researcher</strong> (Jan 2023 – May 2023): Trained deep
+          learning models (CNN/RNN) for image and language tasks.</span>
+      </li>
     </ul>
   </section>
 
